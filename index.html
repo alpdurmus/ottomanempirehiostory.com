@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ottoman Empire: A Complete History</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #8B4513 0%, #DAA520 50%, #CD853F 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: stars 20s linear infinite;
+        }
+
+        @keyframes stars {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav {
+            background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0 1rem;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #3498DB 0%, #2980B9 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(135deg, #5DADE2 0%, #3498DB 100%);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .period {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .period.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .period-header {
+            background: linear-gradient(135deg, #16A085 0%, #1ABC9C 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .period-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .period-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .period-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* -- Sultan Card Styles -- */
+        .sultan-card {
+            background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid #E74C3C;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+        }
+        
+        .sultan-card-header {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .sultan-card-header:hover {
+            background: rgba(0,0,0,0.02);
+        }
+        
+        .sultan-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2C3E50;
+            margin-bottom: 0;
+        }
+
+        .sultan-years {
+            font-size: 1rem;
+            color: #7F8C8D;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+        
+        .expand-icon {
+            font-size: 1.5rem;
+            color: #3498DB;
+            transition: transform 0.4s ease;
+        }
+
+        .sultan-card.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .sultan-card-body {
+            padding: 0 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+        }
+        
+        .sultan-card.expanded .sultan-card-body {
+             padding: 0 2rem 1.5rem 2rem;
+             max-height: 1000px; /* Adjust as needed */
+             transition: max-height 0.7s ease-in, padding 0.7s ease-in;
+        }
+
+        .sultan-description {
+            color: #34495E;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            border-top: 1px solid #ddd;
+            padding-top: 1.5rem;
+        }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .info-card {
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .info-card h4 {
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-card h4 i {
+            margin-right: 0.75rem;
+            font-size: 1.3rem;
+        }
+        
+        .info-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .war-card {
+            background: #FFEBEE; /* Light Red */
+            border-left: 4px solid #E57373;
+        }
+        .war-card h4 { color: #C62828; }
+
+        .reform-card {
+            background: #E8F5E9; /* Light Green */
+            border-left: 4px solid #81C784;
+        }
+        .reform-card h4 { color: #2E7D32; }
+
+        .fact-card {
+            background: #E3F2FD; /* Light Blue */
+            border-left: 4px solid #64B5F6;
+        }
+        .fact-card h4 { color: #1565C0; }
+
+
+        .quiz-section {
+            background: linear-gradient(135deg, #9B59B6 0%, #8E44AD 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .quiz-question {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid transparent;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .quiz-option.correct {
+            background: #27AE60;
+            border-color: #2ECC71;
+        }
+
+        .quiz-option.incorrect {
+            background: #E74C3C;
+            border-color: #C0392B;
+        }
+
+        .quiz-result {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .quiz-result.show {
+            opacity: 1;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #E74C3C, #3498DB);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 2rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+            text-align: left;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #E74C3C;
+            border-radius: 50%;
+            top: 0;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -12px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -12px;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .sultan-card-header {
+                padding: 1.25rem 1.5rem;
+            }
+            
+            .sultan-name {
+                font-size: 1.2rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                text-align: left !important;
+                padding-left: 3rem !important;
+                padding-right: 0 !important;
+            }
+
+            .timeline-item::before {
+                left: 8px !important;
+            }
+
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ The Ottoman Empire</h1>
+            <p>From Rise to Fall: 624 Years of History (1299-1923)</p>
+        </div>
+
+        <nav class="nav">
+            <div class="nav-container">
+                <button class="nav-btn active" onclick="showPeriod(event, 'foundation')">Foundation Era</button>
+                <button class="nav-btn" onclick="showPeriod(event, 'expansion')">Great Expansion</button>
+                <button class="nav-btn" onclick="showPeriod(event, 'classical')">Classical Age</button>
+                <button class="nav-btn" onclick="showPeriod(event, 'stagnation')">Stagnation Period</button>
+                <button class="nav-btn" onclick="showPeriod(event, 'decline')">Decline & Reforms</button>
+                <button class="nav-btn" onclick="showPeriod(event, 'downfall')">Final Downfall</button>
+            </div>
+        </nav>
+
+        <div class="content">
+            <!-- Foundation Era (1299-1453) -->
+            <div class="period active" id="foundation">
+                <div class="period-header">
+                    <h2>Foundation Era</h2>
+                    <p>1299-1453: From Small Beylik to Empire</p>
+                </div>
+
+                <div class="sultan-card">
+                    <div class="sultan-card-header">
+                        <div><div class="sultan-name">Osman I (Osman Gazi)</div><div class="sultan-years">r. 1299-1326</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">The founder of the Ottoman dynasty, Osman I was a Turkish tribal leader who established the Ottoman beylik in northwestern Anatolia. He expanded his territory through both conquest and strategic alliances, laying the foundation for what would become one of history's greatest empires. His name gave the dynasty and empire their title.</div>
+                        <div class="details-grid">
+                            <div class="info-card fact-card"><h4><i class="fas fa-lightbulb"></i>Interesting Fact</h4><p>Osman had a famous dream in which a tree grew from his navel and its branches covered the world, a prophecy interpreted as foretelling the vast empire his descendants would build.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sultan-card">
+                    <div class="sultan-card-header">
+                        <div><div class="sultan-name">Orhan Gazi</div><div class="sultan-years">r. 1326-1362</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">Osman's son who significantly expanded Ottoman territory in Anatolia and established the first Ottoman foothold in Europe by capturing Gallipoli in 1354. He organized the first regular Ottoman army and established many of the administrative practices that would define the empire. Under his rule, the Ottomans began their transformation from a small principality to a major power.</div>
+                        <div class="details-grid">
+                            <div class="info-card war-card"><h4><i class="fas fa-khanda"></i>Notable War</h4><p><strong>Capture of Bursa (1326):</strong> This strategic city became the first major Ottoman capital, solidifying their control in the region and providing a base for further expansion.</p></div>
+                            <div class="info-card reform-card"><h4><i class="fas fa-scroll"></i>Major Reform</h4><p><strong>First Regular Army:</strong> Orhan established the first standing army (the Yaya and Müsellem), moving away from relying solely on tribal ghazi warriors.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sultan-card">
+                    <div class="sultan-card-header">
+                        <div><div class="sultan-name">Murad I</div><div class="sultan-years">r. 1362-1389</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">The first Ottoman ruler to use the title "Sultan," Murad I expanded deep into the Balkans, establishing Ottoman control over much of southeastern Europe. He created the Janissary corps, an elite military unit that would become the backbone of Ottoman military power.</div>
+                        <div class="details-grid">
+                            <div class="info-card war-card"><h4><i class="fas fa-khanda"></i>Notable War</h4><p><strong>Battle of Kosovo (1389):</strong> A decisive Ottoman victory against a coalition of Balkan forces that cemented Ottoman dominance in the region. Murad I was famously killed during or after the battle.</p></div>
+                            <div class="info-card reform-card"><h4><i class="fas fa-scroll"></i>Major Reform</h4><p><strong>Creation of the Janissaries:</strong> He institutionalized the 'devşirme' system, recruiting Christian boys to be trained as elite soldiers loyal only to the Sultan, forming the powerful Janissary corps.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Bayezid I "The Thunderbolt"</div><div class="sultan-years">r. 1389-1402</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">Known for his rapid military campaigns, Bayezid I expanded Ottoman territory in both Anatolia and the Balkans. His reign was marked by the siege of Constantinople and major victories in Europe. His expansion was halted by Timur (Tamerlane), who defeated and captured him at the Battle of Ankara in 1402, leading to the Ottoman Interregnum.</div>
+                         <div class="details-grid">
+                            <div class="info-card war-card"><h4><i class="fas fa-khanda"></i>Notable War</h4><p><strong>Battle of Ankara (1402):</strong> A catastrophic defeat at the hands of Timur's forces, resulting in Bayezid's capture and plunging the empire into a decade-long civil war (the Ottoman Interregnum).</p></div>
+                            <div class="info-card fact-card"><h4><i class="fas fa-lightbulb"></i>Interesting Fact</h4><p>He was the first Ottoman ruler to besiege Constantinople, a feat that would not be accomplished until Mehmed II's conquest over 50 years later.</p></div>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Mehmed I "The Restorer"</div><div class="sultan-years">r. 1413-1421</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">After winning the Ottoman Interregnum, Mehmed I emerged as the undisputed Sultan and reunified the fractured empire. His reign was focused on consolidation and restoring central authority rather than major new conquests.</div>
+                         <div class="details-grid">
+                            <div class="info-card reform-card"><h4><i class="fas fa-scroll"></i>Major Reform</h4><p><strong>Reunification of the Empire:</strong> His most significant achievement was ending the civil war and restoring the unity of the Ottoman state, earning him the epithet "The Restorer" or "The Second Founder".</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Murad II</div><div class="sultan-years">r. 1421-1444, 1446-1451</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">Murad II resumed Ottoman expansion in Europe and successfully defended against Crusader armies. He briefly abdicated in favor of his young son Mehmed II but returned to power to handle the Crusader threat, culminating in the victory at Varna.</div>
+                         <div class="details-grid">
+                            <div class="info-card war-card"><h4><i class="fas fa-khanda"></i>Notable War</h4><p><strong>Battle of Varna (1444):</strong> A major Ottoman victory against a large Crusader army, which secured Ottoman territories in the Balkans for decades and dashed European hopes of driving the Ottomans out.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Mehmed II "The Conqueror"</div><div class="sultan-years">r. 1444-1446, 1451-1481</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">The most famous achievement of Mehmed II was the conquest of Constantinople in 1453, ending the Byzantine Empire and establishing Ottoman control over the strategic Bosphorus. This victory marked the beginning of the Ottoman classical age and established the Ottomans as a major European power. He also conquered much of the Balkans and Anatolia.</div>
+                        <div class="details-grid">
+                             <div class="info-card war-card"><h4><i class="fas fa-khanda"></i>Notable War</h4><p><strong>Conquest of Constantinople (1453):</strong> A pivotal moment in world history, achieved with massive cannons and a brilliant military strategy, turning the city into the new Ottoman capital, Istanbul.</p></div>
+                            <div class="info-card fact-card"><h4><i class="fas fa-lightbulb"></i>Interesting Fact</h4><p>Mehmed II was a polyglot, reportedly fluent in several languages including Turkish, Greek, Latin, Arabic, Persian, and Hebrew. He was a great patron of arts and sciences.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Great Expansion (1453-1566) -->
+            <div class="period" id="expansion">
+                <div class="period-header"><h2>Great Expansion</h2><p>1453-1566: Becoming a World Empire</p></div>
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Bayezid II</div><div class="sultan-years">r. 1481-1512</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">A period of consolidation and cultural development. Bayezid II focused on internal development and patronized arts and architecture. His reign saw the arrival of Sephardic Jews expelled from Spain, who contributed significantly to Ottoman commerce and culture.</div>
+                         <div class="details-grid">
+                            <div class="info-card fact-card"><h4><i class="fas fa-lightbulb"></i>Interesting Fact</h4><p>He famously welcomed Jewish refugees expelled from Spain in 1492, reportedly saying, "You venture to call Ferdinand a wise ruler, he who has impoverished his own country and enriched mine!".</p></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Selim I "The Grim"</div><div class="sultan-years">r. 1512-1520</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">Despite his short reign, Selim I dramatically expanded the empire by conquering the Mamluk Sultanate, adding Egypt, Syria, and the Hejaz (including Mecca and Medina) to Ottoman territory. This made the Ottoman Sultan the Caliph of Islam.</div>
+                         <div class="details-grid">
+                            <div class="info-card war-card"><h4><i class="fas fa-khanda"></i>Notable War</h4><p><strong>Battle of Marj Dabiq (1516) & Ridaniya (1517):</strong> These victories led to the conquest of the Mamluk Sultanate, effectively doubling the size of the Ottoman Empire and giving it control over the heartlands of the Islamic world.</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Suleiman I "The Magnificent"</div><div class="sultan-years">r. 1520-1566</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">The longest reigning and most famous Ottoman sultan, Suleiman I presided over the empire's golden age. He expanded Ottoman territory to its greatest extent, conquering Hungary, besieging Vienna, and dominating the Mediterranean. Known as "The Lawgiver" for his legal reforms, he also patronized arts and architecture, commissioning the great architect Mimar Sinan. His reign marked the peak of Ottoman power, prosperity, and cultural achievement.</div>
+                         <div class="details-grid">
+                            <div class="info-card war-card"><h4><i class="fas fa-khanda"></i>Notable War</h4><p><strong>First Siege of Vienna (1529):</strong> Although unsuccessful, the siege marked the furthest extent of Ottoman expansion into Central Europe and struck fear into the heart of the continent.</p></div>
+                            <div class="info-card reform-card"><h4><i class="fas fa-scroll"></i>Major Reform</h4><p><strong>The Kanun-name:</strong> Suleiman reformed the entire Ottoman legal system. His legal code (Kanun) was a comprehensive set of laws that harmonized religious and secular law and lasted for centuries.</p></div>
+                            <div class="info-card fact-card"><h4><i class="fas fa-lightbulb"></i>Interesting Fact</h4><p>He was a skilled poet, writing under the pen name Muhibbi ("Lover"). His romance and marriage to Hürrem Sultan (Roxelana) broke centuries of Ottoman tradition.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classical Age (1566-1703) -->
+            <div class="period" id="classical">
+                <div class="period-header"><h2>Classical Age</h2><p>1566-1703: Height of Power and Cultural Achievement</p></div>
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Selim II "The Blonde"</div><div class="sultan-years">r. 1566-1574</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">The first sultan to be less personally involved in military campaigns, delegating more power to the Grand Vizier. His reign saw the naval defeat at Lepanto (1571) by the Holy League, a significant blow to Ottoman naval dominance, though Cyprus was successfully conquered.</div>
+                         <div class="details-grid">
+                            <div class="info-card war-card"><h4><i class="fas fa-khanda"></i>Notable War</h4><p><strong>Battle of Lepanto (1571):</strong> A major naval engagement where the Ottoman fleet was defeated by a coalition of Catholic states. It marked a turning point in Ottoman naval power in the Mediterranean.</p></div>
+                            <div class="info-card fact-card"><h4><i class="fas fa-lightbulb"></i>Interesting Fact</h4><p>Selim II was the first of the "harem sultans," who preferred the pleasures of the palace to leading military campaigns, marking a shift in the nature of Ottoman rule.</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Murad III</div><div class="sultan-years">r. 1574-1595</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">His reign was marked by continuous warfare with Safavid Persia and Habsburg Austria. The empire faced increasing financial difficulties due to war and inflation. Despite military challenges, this period saw continued cultural and architectural achievements.</div>
+                         <div class="details-grid">
+                            <div class="info-card fact-card"><h4><i class="fas fa-lightbulb"></i>Interesting Fact</h4><p>He had a massive harem and is said to have fathered over 100 children. His reign saw the influence of the women of the Imperial Harem, particularly his mother Nurbanu Sultan and wife Safiye Sultan, reach its peak.</p></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Ahmed I</div><div class="sultan-years">r. 1603-1617</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">Famous for commissioning the Blue Mosque (Sultan Ahmed Mosque) in Istanbul. His reign saw the Treaty of Zsitvatorok with Austria (1606), which ended Ottoman territorial expansion in Europe and signaled a more equal diplomatic standing.</div>
+                         <div class="details-grid">
+                             <div class="info-card reform-card"><h4><i class="fas fa-scroll"></i>Major Reform</h4><p><strong>Abolition of Fratricide:</strong> He ended the traditional practice of royal fratricide (the killing of brothers upon accession to the throne) and replaced it with a system of seniority, where the eldest male relative would inherit the throne.</p></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Murad IV</div><div class="sultan-years">r. 1623-1640</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">Known for his ruthless restoration of state authority after a period of anarchy. He banned coffeehouses and tobacco, and personally led military campaigns, including the recapture of Baghdad from the Persians, marking a temporary revival of Ottoman military power.</div>
+                         <div class="details-grid">
+                            <div class="info-card war-card"><h4><i class="fas fa-khanda"></i>Notable War</h4><p><strong>Recapture of Baghdad (1638):</strong> He personally led the army that recaptured Baghdad from the Safavid Empire, a major military achievement that secured the eastern frontier for a time.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stagnation Period (1703-1792) -->
+            <div class="period" id="stagnation">
+                 <div class="period-header"><h2>Stagnation Period</h2><p>1703-1792: Military Decline and First Reforms</p></div>
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Ahmed III</div><div class="sultan-years">r. 1703-1730</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">His reign is known as the "Tulip Period" for its cultural flowering and adoption of European customs and technologies. This was the first major attempt at modernization, including the introduction of printing press to the Ottoman Empire. However, military defeats and westernization efforts led to the Patrona Halil rebellion that ended his reign.</div>
+                         <div class="details-grid">
+                            <div class="info-card reform-card"><h4><i class="fas fa-scroll"></i>Major Reform</h4><p><strong>The Tulip Period:</strong> A time of cultural enlightenment and the first embrace of European art, architecture, and lifestyle. The first Turkish-language printing press was established during his reign.</p></div>
+                             <div class="info-card fact-card"><h4><i class="fas fa-lightbulb"></i>Interesting Fact</h4><p>The period is named after the immense popularity and cultivation of tulips, which became a symbol of nobility and prestige. Tulip festivals were common in Istanbul's palaces.</p></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Mustafa III</div><div class="sultan-years">r. 1757-1774</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">An energetic ruler who attempted significant military and administrative reforms to halt the empire's decline. His reign was dominated by the disastrous Russo-Turkish War (1768-1774), which ended with the humiliating Treaty of Küçük Kaynarca.</div>
+                         <div class="details-grid">
+                            <div class="info-card war-card"><h4><i class="fas fa-khanda"></i>Notable War</h4><p><strong>Russo-Turkish War (1768-1774):</strong> This war was a disaster for the Ottomans, leading to significant territorial losses (including Crimea becoming independent) and granting Russia major influence in Ottoman affairs.</p></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Selim III</div><div class="sultan-years">r. 1789-1807</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">A reformist sultan who launched an ambitious program of modernization known as the "Nizam-ı Cedid" (New Order), aimed at creating a European-style army and bureaucracy. His reforms faced fierce opposition from traditionalist groups like the Janissaries, leading to his overthrow and assassination.</div>
+                         <div class="details-grid">
+                            <div class="info-card reform-card"><h4><i class="fas fa-scroll"></i>Major Reform</h4><p><strong>Nizam-ı Cedid (New Order):</strong> A comprehensive reform effort to create a new, modern army trained and equipped along European lines. It was the most serious attempt at modernization to date but ultimately failed due to internal opposition.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decline & Reforms (1792-1876) -->
+            <div class="period" id="decline">
+                 <div class="period-header"><h2>Decline & Reform Era</h2><p>1792-1876: The Sick Man of Europe</p></div>
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Mahmud II "The Reformer"</div><div class="sultan-years">r. 1808-1839</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">One of the most important reform-minded sultans, Mahmud II abolished the Janissary corps in 1826 (the "Auspicious Incident") and began systematic modernization of the empire. He faced the Greek War of Independence, the Egyptian crisis under Mehmed Ali Pasha, and growing European intervention. His reforms laid the groundwork for the Tanzimat period.</div>
+                         <div class="details-grid">
+                            <div class="info-card reform-card"><h4><i class="fas fa-scroll"></i>Major Reform</h4><p><strong>Abolition of the Janissaries (1826):</strong> Known as the "Auspicious Incident," he violently disbanded the corrupt and rebellious Janissary corps, removing a major obstacle to modernization.</p></div>
+                            <div class="info-card fact-card"><h4><i class="fas fa-lightbulb"></i>Interesting Fact</h4><p>He changed the royal court's dress code, replacing traditional turbans and robes with the fez and European-style suits, symbolizing a break with the old order.</p></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Abdulmejid I</div><div class="sultan-years">r. 1839-1861</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">His reign marked the beginning of the Tanzimat ("Reorganization") period, a comprehensive reform era. He issued the Edict of Gülhane in 1839, which guaranteed rights to all subjects regardless of religion and began modernizing the legal and administrative systems.</div>
+                         <div class="details-grid">
+                            <div class="info-card reform-card"><h4><i class="fas fa-scroll"></i>Major Reform</h4><p><strong>Tanzimat Reforms:</strong> Initiated a period of intense modernization of the state and society, including the introduction of new legal codes, a national anthem, a flag, and paper banknotes.</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Abdulaziz</div><div class="sultan-years">r. 1861-1876</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">Continued the Tanzimat reforms but his reign was plagued by a severe financial crisis, leading to Ottoman bankruptcy in 1875. He was the first Ottoman sultan to travel to Western Europe. Growing discontent with his rule led to his deposition and mysterious death.</div>
+                         <div class="details-grid">
+                            <div class="info-card fact-card"><h4><i class="fas fa-lightbulb"></i>Interesting Fact</h4><p>He was deeply interested in the Ottoman Navy, investing heavily to create the world's third-largest fleet, after Britain and France.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Final Downfall (1876-1923) -->
+            <div class="period" id="downfall">
+                 <div class="period-header"><h2>Final Downfall</h2><p>1876-1923: From Constitutional Monarchy to Republic</p></div>
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Abdul Hamid II</div><div class="sultan-years">r. 1876-1909</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">Initially promising constitutional rule, Abdul Hamid II suspended the constitution in 1878 and ruled as an autocrat for 30 years. His reign was marked by internal strife and loss of territory, but also by significant modernization of infrastructure like the Hejaz Railway.</div>
+                         <div class="details-grid">
+                            <div class="info-card reform-card"><h4><i class="fas fa-scroll"></i>Major Reform</h4><p><strong>Pan-Islamism:</strong> He promoted an ideology of Islamic unity to counter rising nationalism and European influence, and invested heavily in education and communication (telegraphs) to strengthen central control.</p></div>
+                            <div class="info-card fact-card"><h4><i class="fas fa-lightbulb"></i>Interesting Fact</h4><p>He was an avid photographer and a skilled carpenter, creating many pieces of furniture himself. He used photography to document the empire's modernization efforts.</p></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Mehmed V</div><div class="sultan-years">r. 1909-1918</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">A constitutional monarch with limited power, as real authority rested with the "Three Pashas" of the Young Turk government. His reign saw the disastrous Balkan Wars and the Ottoman entry into World War I on the side of the Central Powers, which sealed the empire's fate.</div>
+                         <div class="details-grid">
+                            <div class="info-card war-card"><h4><i class="fas fa-khanda"></i>Notable War</h4><p><strong>World War I (1914-1918):</strong> The Ottoman Empire's participation led to its defeat, occupation, and eventual partition by the victorious Allied powers.</p></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Mehmed VI</div><div class="sultan-years">r. 1918-1922</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">The last reigning Ottoman Sultan, Mehmed VI presided over the empire's final dissolution after World War I. His government signed the punitive Treaty of Sèvres, which was rejected by Turkish nationalists led by Mustafa Kemal (Atatürk), leading to the Turkish War of Independence.</div>
+                         <div class="details-grid">
+                            <div class="info-card war-card"><h4><i class="fas fa-khanda"></i>Notable War</h4><p><strong>Turkish War of Independence (1919-1922):</strong> While not a war he led, it was fought against his government and the Allied occupiers, resulting in the victory of the nationalists and the end of his rule.</p></div>
+                             <div class="info-card fact-card"><h4><i class="fas fa-lightbulb"></i>Interesting Fact</h4><p>After the Sultanate was abolished in 1922, he was forced into exile, leaving Istanbul aboard a British warship, marking the final departure of an Ottoman sovereign.</p></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="sultan-card">
+                     <div class="sultan-card-header">
+                        <div><div class="sultan-name">Abdulmejid II (Caliph only)</div><div class="sultan-years">1922-1924</div></div><i class="fas fa-chevron-down expand-icon"></i>
+                    </div>
+                    <div class="sultan-card-body">
+                        <div class="sultan-description">After the abolition of the Sultanate, Abdulmejid II was elected by the new Turkish Grand National Assembly as Caliph, a purely religious title without political power. He was the 101st and last Caliph of the Sunni Muslim world and the final head of the Ottoman dynasty.</div>
+                         <div class="details-grid">
+                            <div class="info-card reform-card"><h4><i class="fas fa-scroll"></i>Major Event</h4><p><strong>Abolition of the Caliphate (1924):</strong> As part of its secularizing reforms, the Turkish Republic under Mustafa Kemal Atatürk abolished the office of the Caliphate, ending over 1300 years of the institution and sending Abdulmejid II and his family into exile.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 Ottoman Empire History | A comprehensive journey through 624 years of imperial legacy</p>
+        </div>
+    </div>
+
+    <script>
+        // Audio context for sound effects
+        let audioContext;
+        
+        // Initialize audio context
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playSound(frequency, duration, type = 'sine', volume = 0.3) {
+            initAudio();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+            oscillator.type = type;
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            gainNode.gain.linearRampToValueAtTime(volume, audioContext.currentTime + 0.01);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+
+        function playSuccessSound() {
+            playSound(523.25, 0.2, 'sine', 0.2);
+            setTimeout(() => playSound(659.25, 0.2, 'sine', 0.15), 50);
+            setTimeout(() => playSound(783.99, 0.3, 'sine', 0.1), 100);
+        }
+
+        function playErrorSound() {
+            playSound(330, 0.15, 'square', 0.2);
+            setTimeout(() => playSound(277.18, 0.2, 'square', 0.15), 100);
+        }
+
+        function playClickSound() {
+            playSound(800, 0.1, 'sine', 0.1);
+        }
+        
+        function playToggleSound() {
+            playSound(600, 0.08, 'triangle', 0.1);
+        }
+
+        function playHoverSound() {
+            playSound(1200, 0.05, 'sine', 0.05);
+        }
+
+        function showPeriod(event, periodId) {
+            playClickSound();
+            
+            // Hide all periods
+            const periods = document.querySelectorAll('.period');
+            periods.forEach(period => {
+                period.classList.remove('active');
+            });
+
+            // Show selected period
+            const selectedPeriod = document.getElementById(periodId);
+            if (selectedPeriod) { // Add a check to prevent errors
+                 selectedPeriod.classList.add('active');
+            }
+
+            // Update navigation buttons
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Activate the clicked button
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
+
+            // Scroll to top of content
+            const content = document.querySelector('.content');
+            if(content) {
+                content.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function selectAnswer(element, isCorrect) {
+            const quizSection = element.closest('.quiz-section');
+            const options = quizSection.querySelectorAll('.quiz-option');
+            const result = quizSection.querySelector('.quiz-result');
+            options.forEach(option => option.classList.remove('correct', 'incorrect'));
+            if (isCorrect) {
+                playSuccessSound();
+                element.classList.add('correct');
+                result.textContent = '🎉 Correct! Well done!';
+                result.style.color = '#27AE60';
+                element.style.animation = 'celebration 0.6s ease-in-out';
+            } else {
+                playErrorSound();
+                element.classList.add('incorrect');
+                result.textContent = '❌ Incorrect. Try again!';
+                result.style.color = '#E74C3C';
+                element.style.animation = 'shake 0.5s ease-in-out';
+                setTimeout(() => {
+                    options.forEach(option => {
+                        if (option.onclick.toString().includes('true')) {
+                            option.classList.add('correct');
+                            option.style.animation = 'highlight 0.8s ease-in-out';
+                        }
+                    });
+                }, 1000);
+            }
+            result.classList.add('show');
+        }
+
+        // New function to handle sultan card expansion
+        function toggleSultanCard(headerElement) {
+            playToggleSound();
+            const card = headerElement.parentElement;
+            card.classList.toggle('expanded');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('click', initAudio, { once: true });
+            
+            // Add click listener to sultan card headers
+            const sultanHeaders = document.querySelectorAll('.sultan-card-header');
+            sultanHeaders.forEach(header => {
+                header.addEventListener('click', () => toggleSultanCard(header));
+            });
+            
+            const buttons = document.querySelectorAll('.nav-btn, .quiz-option');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => { this.style.transform = ''; }, 150);
+                });
+                if (button.classList.contains('quiz-option') || button.classList.contains('nav-btn')) {
+                    button.addEventListener('mouseenter', () => playHoverSound());
+                }
+            });
+        });
+    </script>
+</body>
+</html>
